@@ -1,0 +1,11 @@
+{
+  "isPublished": false,
+  "localBaseUrl": "static/",
+  "remoteBaseUrl": "/api/",
+  "api": {
+    "hello": {
+      "localUrl": "data.json",
+      "remoteUrl": ""
+    }
+  }
+}

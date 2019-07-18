@@ -1,18 +1,32 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <MyButton :url="location">
+      <template #btn2>
+        btn1
+      </template>
+      <template #btn1 :btn-one="btnOne">
+        btn2
+      </template>
+    </MyButton>
+    <Parent></Parent>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Parent from "@/components/Parent";
+import MyButton from "@/components/MyButton";
 
 export default {
   name: "home",
   components: {
-    HelloWorld
+    Parent,
+    MyButton
+  },
+  data() {
+    return {
+      btnOne: "btnOne",
+      location: "/about"
+    };
   }
 };
 </script>
