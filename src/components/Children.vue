@@ -1,7 +1,7 @@
 <template>
   <div class="children">
     {{ loveYou }}
-    <button @click="pass"></button>
+    <button @click="pass">点击按钮</button>
   </div>
 </template>
 <script>
@@ -15,7 +15,10 @@ export default {
   },
   methods: {
     pass() {
-      this.$emit("passData", this.data);
+      this.$store.commit({
+        type: "increment",
+        amount: 10
+      });
     }
   }
 };
