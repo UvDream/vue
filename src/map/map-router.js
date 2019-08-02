@@ -1,10 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home";
-import ZhouShi from "./views/ZhouShi";
-import School from "./views/School";
-import Community from "./views/Community";
-import Factory from "./views/Factory";
 
 Vue.use(Router);
 const router = new Router({
@@ -13,27 +8,27 @@ const router = new Router({
   routes: [
     {
       path: "/",
-      component: Home,
+      component: () => import("./views/Home.vue"),
       name: "home"
     },
     {
       path: "/zhoushi",
-      component: ZhouShi,
+      component: () => import("./views/ZhouShi.vue"),
       name: "zhoushi"
     },
     {
       path: "/school",
-      component: School,
+      component: () => import("./views/School.vue"),
       name: "school"
     },
     {
       path: "/community",
-      component: Community,
+      component: () => import("./views/Community.vue"),
       name: "community"
     },
     {
       path: "/factory",
-      component: Factory,
+      component: () => import("./views/Factory.vue"),
       name: "factory"
     }
   ]
