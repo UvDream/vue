@@ -6,13 +6,6 @@
 import * as ZTMAP from "ztmap";
 export default {
   mounted() {
-    let _this = this;
-    ZTMAP.MAPSTYLE.MAPURL = _this.$store.state.outerMapUrl;
-    ZTMAP.MAPSTYLE.MAPFONTSURL =
-      location.origin + _this.$store.state.mapFontsUrl;
-    ZTMAP.MAPSTYLE.MAPSPRITEURL =
-      location.origin + _this.$store.state.mapSpriteUrl;
-    ZTMAP.MAPSTYLE.STYLE = ZTMAP.MAPBASICLAYERSTYLE.KAILIDE_DARK;
     const map = new ZTMAP.Map({
       container: "map",
       center: [121.01101297650985, 31.451105926705637],

@@ -9,13 +9,6 @@ export default {
     return {};
   },
   mounted() {
-    let _this = this;
-    ZTMAP.MAPSTYLE.MAPURL = _this.$store.state.outerMapUrl;
-    ZTMAP.MAPSTYLE.MAPFONTSURL =
-      location.origin + _this.$store.state.mapFontsUrl;
-    ZTMAP.MAPSTYLE.MAPSPRITEURL =
-      location.origin + _this.$store.state.mapSpriteUrl;
-    ZTMAP.MAPSTYLE.STYLE = ZTMAP.MAPBASICLAYERSTYLE.KAILIDE_DARK;
     const map = new ZTMAP.Map({
       container: "map",
       center: [120.96669037868332, 31.414776697732762],
