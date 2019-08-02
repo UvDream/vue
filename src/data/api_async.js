@@ -4,7 +4,7 @@ export default {
   request(url, data = {}, type = "post") {
     return new Promise((resolve, reject) => {
       axios
-        .get("static/config.json")
+        .get("json/config.json")
         .then(result => {
           let config = result.data;
           // 初始化axios服务
