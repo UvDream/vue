@@ -42,8 +42,8 @@ export default {
 
     const map = new ZTMAP.Map({
       container: "map",
-      center: [120.98210340538867, 31.452529520041352],
-      zoom: 13,
+      center: [120.99444786781726, 31.448474728362854],
+      zoom: 13.341404548841837,
       pitch: 50
     });
     map.on("load", () => {

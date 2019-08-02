@@ -17,7 +17,7 @@ export default {
     ZTMAP.MAPSTYLE.STYLE = ZTMAP.MAPBASICLAYERSTYLE.KAILIDE_DARK;
     const map = new ZTMAP.Map({
       container: "map",
-      center: [120.99837922507027, 31.467860334461136],
+      center: [120.99837556097032, 31.467553401181732],
       zoom: 18.5,
       pitch: 60
     });
