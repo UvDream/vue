@@ -12,24 +12,18 @@ const router = new Router({
       name: "home"
     },
     {
-      path: "/zhoushi",
-      component: () => import("./views/ZhouShi.vue"),
-      name: "zhoushi"
+      path: "/city",
+      component: () => import("./views/City.vue"),
+      name: "city"
     },
     {
-      path: "/school",
-      component: () => import("./views/School.vue"),
-      name: "school"
+      path: "/detail",
+      component: () => import("./views/Detail.vue"),
+      name: "detail"
     },
     {
-      path: "/community",
-      component: () => import("./views/Community.vue"),
-      name: "community"
-    },
-    {
-      path: "/factory",
-      component: () => import("./views/Factory.vue"),
-      name: "factory"
+      path: "*",
+      component: () => import("../components/404.vue")
     }
   ]
 });

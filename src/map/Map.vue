@@ -21,6 +21,14 @@ export default {
 </script>
 
 <style lang="scss">
+@mixin marker {
+  height: 109px;
+  line-height: 35px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+}
+
 html,
 body {
   width: 100%;
@@ -42,5 +50,36 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+
+.marker-community {
+  background: url(./assets/images/icon-community.png) no-repeat center center;
+  color: rgb(132, 235, 222);
+  @include marker;
+}
+
+.marker-school {
+  background: url(./assets/images/icon-school.png) no-repeat center center;
+  color: rgb(32, 162, 245);
+  @include marker;
+}
+
+.marker-factory {
+  background: url(./assets/images/icon-factory.png) no-repeat center center;
+  color: rgb(132, 235, 222);
+  @include marker;
+}
+
+.marker-special {
+  background: url(./assets/images/icon-special.png) no-repeat center center;
+  color: rgb(229, 82, 50);
+  @include marker;
+  line-height: 50px;
+}
+
+.marker-town {
+  background: url(./assets/images/icon-town.png) no-repeat center center;
+  color: rgb(98, 98, 240);
+  @include marker;
 }
 </style>

@@ -1,0 +1,216 @@
+{
+  "data": [
+    {
+      "name": "惠安新村",
+      "latlng": [120.994916, 31.46476],
+      "type": "community"
+    },
+    {
+      "name": "市北花园",
+      "latlng": [120.9893, 31.469157],
+      "type": "community"
+    },
+    {
+      "name": "市北家园",
+      "latlng": [120.988714, 31.471384],
+      "type": "community"
+    },
+    {
+      "name": "市北锦苑",
+      "latlng": [120.987851, 31.473029],
+      "type": "community"
+    },
+    {
+      "name": "市北农民新村",
+      "latlng": [120.99016, 31.46758],
+      "type": "community"
+    },
+    {
+      "name": "桃园新村",
+      "latlng": [120.953288, 31.378284],
+      "type": "community"
+    },
+    {
+      "name": "鑫茂东苑",
+      "latlng": [120.981849, 31.471419],
+      "type": "community"
+    },
+    {
+      "name": "鑫茂花园",
+      "latlng": [120.975219, 31.468288],
+      "type": "community"
+    },
+    {
+      "name": "新塘新村",
+      "latlng": [120.967976, 31.456537],
+      "type": "community"
+    },
+    {
+      "name": "合生颐庭",
+      "latlng": [120.98742, 31.45904],
+      "type": "community"
+    },
+    {
+      "name": "知心花园",
+      "latlng": [120.996976, 31.453949],
+      "type": "community"
+    },
+    {
+      "name": "华城美地花园翠堤公寓",
+      "latlng": [120.964675, 31.461208],
+      "type": "community"
+    },
+    {
+      "name": "华城美地花园南岸",
+      "latlng": [120.964353, 31.459855],
+      "type": "community"
+    },
+    {
+      "name": "华城美地花园东岸",
+      "latlng": [120.965347, 31.462374],
+      "type": "community"
+    },
+    {
+      "name": "华城美地花园西岸",
+      "latlng": [120.963435, 31.461514],
+      "type": "community"
+    },
+    {
+      "name": "华城美地花园溪谷园",
+      "latlng": [120.96846, 31.462653],
+      "type": "community"
+    },
+    {
+      "name": "万科云岭公寓",
+      "latlng": [120.970809, 31.463993],
+      "type": "community"
+    },
+    {
+      "name": "万科公园大道",
+      "latlng": [120.977573, 31.459424],
+      "type": "community"
+    },
+    {
+      "name": "万科鹿隐别院",
+      "latlng": [120.974213, 31.459005],
+      "type": "community"
+    },
+    {
+      "name": "金瑭珑沐湾",
+      "latlng": [120.970989, 31.458172],
+      "type": "community"
+    },
+    {
+      "name": "琨城帝景园",
+      "latlng": [120.981069, 31.451209],
+      "type": "community"
+    },
+    { "name": "惠腾", "latlng": [120.978356, 31.441544], "type": "community" },
+    {
+      "name": "天逸华庭",
+      "latlng": [120.971392, 31.451711],
+      "type": "community"
+    },
+    {
+      "name": "苏尚家园",
+      "latlng": [120.977587, 31.451413],
+      "type": "community"
+    },
+    {
+      "name": "爱心家园",
+      "latlng": [120.988935, 31.461605],
+      "type": "community"
+    },
+    {
+      "name": "东苑新村",
+      "latlng": [120.905423, 31.17793],
+      "type": "community"
+    },
+    {
+      "name": "海鹏新村",
+      "latlng": [120.999294, 31.457078],
+      "type": "community"
+    },
+    {
+      "name": "金山嘉园",
+      "latlng": [120.996155, 31.456089],
+      "type": "community"
+    },
+    {
+      "name": "东明村",
+      "latlng": [120.997211, 31.458058],
+      "type": "community"
+    },
+    {
+      "name": "平庄村",
+      "latlng": [120.997658, 31.439762],
+      "type": "community"
+    },
+    {
+      "name": "市北村",
+      "latlng": [120.993928, 31.466778],
+      "type": "community"
+    },
+    {
+      "name": "斜塘村",
+      "latlng": [121.004158, 31.475453],
+      "type": "community"
+    },
+    {
+      "name": "朱家湾村",
+      "latlng": [121.002657, 31.440964],
+      "type": "community"
+    },
+    {
+      "name": "小泾村",
+      "latlng": [120.960214, 31.486221],
+      "type": "community"
+    },
+    {
+      "name": "陆桥村",
+      "latlng": [120.949101, 31.472113],
+      "type": "community"
+    },
+    { "name": "周市中学", "latlng": [120.98803, 31.457237], "type": "school" },
+    {
+      "name": "周市中心小学",
+      "latlng": [120.998429, 31.468429],
+      "type": "school"
+    },
+    {
+      "name": "华城美地小学",
+      "latlng": [120.96183, 31.46183],
+      "type": "school"
+    },
+    {
+      "name": "陆杨中心小学",
+      "latlng": [120.97502, 31.449686],
+      "type": "school"
+    },
+    {
+      "name": "华城美地幼儿园",
+      "latlng": [120.917216, 31.381728],
+      "type": "school"
+    },
+    {
+      "name": "苏尚幼儿园",
+      "latlng": [120.97864, 31.448891],
+      "type": "school"
+    },
+    {
+      "name": "鑫茂东苑幼儿园",
+      "latlng": [120.978734, 31.470531],
+      "type": "school"
+    },
+    {
+      "name": "鑫茂花园幼儿园",
+      "latlng": [120.97456, 31.467285],
+      "type": "school"
+    },
+    {
+      "name": "周市幼儿园",
+      "latlng": [120.994096, 31.464574],
+      "type": "school"
+    }
+  ]
+}
