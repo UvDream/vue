@@ -4,7 +4,7 @@
       <el-row>
         <el-col :span="8" :offset="1">周市再生资源综合利用项目大屏</el-col>
         <el-col :span="10">
-          <el-menu :default-active="activeIndex" mode="horizontal" @select="handleMenuChange">
+          <el-menu default-active="1" mode="horizontal" @select="handleChange">
             <el-menu-item index="1">首页大屏</el-menu-item>
             <el-menu-item index="2">小区大屏</el-menu-item>
             <el-menu-item index="3">学校大屏</el-menu-item>
@@ -20,12 +20,11 @@
 export default {
   data() {
     return {
-      ws: "",
-      activeIndex: "1"
+      ws: ""
     };
   },
   methods: {
-    handleMenuChange(key) {
+    handleChange(key) {
       let path;
       switch (key) {
         case "1":
