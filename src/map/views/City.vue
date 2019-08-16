@@ -6,7 +6,9 @@
         :indeterminate="isIndeterminate"
         v-model="checkAll"
         @change="handleCheckAllChange"
-      >全选</el-checkbox>
+      >
+        全选
+      </el-checkbox>
       <div style="margin: 15px 0;"></div>
       <el-checkbox-group v-model="checked" @change="handleCheckedChange">
         <el-checkbox v-for="option in options" :label="option" :key="option">{{option}}</el-checkbox>
@@ -27,7 +29,7 @@ const options = ["学校", "小区", "企业"];
 export default {
   data() {
     return {
-      checkAll: false,
+      checkAll: true,
       checked: ["学校", "小区", "企业"],
       options: options,
       isIndeterminate: true

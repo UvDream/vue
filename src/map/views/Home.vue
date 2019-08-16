@@ -17,6 +17,7 @@ export default {
     });
     map.on("load", () => {
       generateMarker({
+        addNoEvent: true,
         type: "town",
         name: "周市镇",
         latlng: [120.98307707345174, 31.461277153867087]

@@ -10,7 +10,7 @@ import * as ZTMAP from "ztmap";
 export default {
   mounted() {
     let _this = this;
-    ZTMAP.MAPSTYLE.MAPURL = _this.$store.state.outerMapUrl;
+    ZTMAP.MAPSTYLE.MAPURL = _this.$store.state.innerMapUrl;
     ZTMAP.MAPSTYLE.MAPFONTSURL =
       location.origin + _this.$store.state.mapFontsUrl;
     ZTMAP.MAPSTYLE.MAPSPRITEURL =
@@ -52,7 +52,8 @@ body {
   overflow: hidden;
 }
 
-.marker-community {
+.marker-community,
+.marker-town {
   background: url(./assets/images/icon-community.png) no-repeat center center;
   color: rgb(132, 235, 222);
   @include marker;
@@ -75,11 +76,5 @@ body {
   color: rgb(229, 82, 50);
   @include marker;
   line-height: 50px;
-}
-
-.marker-town {
-  background: url(./assets/images/icon-town.png) no-repeat center center;
-  color: rgb(98, 98, 240);
-  @include marker;
 }
 </style>

@@ -1,19 +1,47 @@
 <template>
-  <div>
-    <button @click="btnClick">跨域</button>
+  <div id="app">
+    <header>
+      <el-row>
+        <el-col :span="8" :offset="1">周市再生资源综合利用项目大屏</el-col>
+        <el-col :span="10">
+          <el-menu :default-active="activeIndex" mode="horizontal" @select="handleMenuChange">
+            <el-menu-item index="1">首页大屏</el-menu-item>
+            <el-menu-item index="2">小区大屏</el-menu-item>
+            <el-menu-item index="3">学校大屏</el-menu-item>
+            <el-menu-item index="4">企业大屏</el-menu-item>
+          </el-menu>
+        </el-col>
+      </el-row>
+    </header>
+    <router-view :ws="ws"></router-view>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      bc: "",
-      ws: ""
+      ws: "",
+      activeIndex: "1"
     };
   },
   methods: {
-    btnClick() {
-      this.ws.send("helloworld");
+    handleMenuChange(key) {
+      let path;
+      switch (key) {
+        case "1":
+          path = "/";
+          break;
+        case "2":
+          path = "/community";
+          break;
+        case "3":
+          path = "/school";
+          break;
+        case "4":
+          path = "/factory";
+          break;
+      }
+      this.$router.push({ path });
     }
   },
   mounted() {
@@ -27,3 +55,28 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+
+  header {
+    height: 60px;
+    line-height: 60px;
+    border-bottom: solid 1px #e6e6e6;
+    font-size: 24px;
+  }
+
+  section {
+    height: calc(100% - 60px);
+    overflow: auto;
+  }
+}
+</style>

@@ -5,13 +5,13 @@ const generateMarker = option => {
   let el = document.createElement("div");
   el.className = "marker-" + (option.type || "community");
   el.innerHTML = option.name;
-  if (option.type != "special") {
+  if (!option.addNoEvent) {
     el.className += " marker-detail";
     el.addEventListener("click", () => {
       let { name, type } = option;
       if (window.top === window) {
         let hash =
-          type === "town" ? `/city` : `/detail?name=${name}&type=${type}`;
+          type === "special" ? `/city` : `/detail?name=${name}&type=${type}`;
         location.hash = hash;
       } else {
         window.parent.postMessage({ name, type }, "http://50.78.138.6:7099");
