@@ -3,8 +3,8 @@ import Router from "vue-router";
 
 Vue.use(Router);
 const router = new Router({
-  mode: "hash",
-  base: process.env.BASE_URL,
+  mode: "history",
+  base: "map",
   routes: [
     {
       path: "/",

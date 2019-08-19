@@ -10,7 +10,12 @@ const router = new Router({
       path: "/"
     },
     {
-      path: "/about"
+      path: "/about",
+      component: () => import("../components/404.vue")
+    },
+    {
+      path: "*",
+      component: () => import("../components/404.vue")
     }
   ]
 });

@@ -1,9 +1,10 @@
 import { requestJson } from "./api";
 
 const interfaces = {
-  bounds: "json/map/home/bounds.json",
-  points: "json/map/city/points.json",
-  singlePointBounds: (name, type) => "json/map/" + type + "/" + name + ".json"
+  bounds: "../json/map/home/bounds.json",
+  points: "../json/map/city/points.json",
+  singlePointBounds: (name, type) =>
+    "../json/map/" + type + "/" + name + ".json"
 };
 
 // 周市的边界数据

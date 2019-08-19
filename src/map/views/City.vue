@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       checkAll: true,
-      checked: ["学校", "小区", "企业"],
+      checked: ["学校", "小区"],
       options: options,
       isIndeterminate: true
     };
@@ -60,7 +60,7 @@ export default {
       getPoints().then(result => {
         let data = result.data.data;
         data.map(val => {
-          generateMarker(val).addTo(map);
+          generateMarker(this.$router, val).addTo(map);
         });
       });
 
@@ -78,7 +78,7 @@ export default {
         lineStringLayer.addTo(map);
       });
 
-      generateMarker({
+      generateMarker(this.$router, {
         type: "special",
         name: "周市再生资源综合利用项目",
         latlng: [121.0112746623, 31.4802199136]

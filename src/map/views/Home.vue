@@ -16,13 +16,13 @@ export default {
       // pitch: 50
     });
     map.on("load", () => {
-      generateMarker({
+      generateMarker(this.$router, {
         addNoEvent: true,
         type: "town",
         name: "周市镇",
         latlng: [120.98307707345174, 31.461277153867087]
       }).addTo(map);
-      generateMarker({
+      generateMarker(this.$router, {
         type: "special",
         name: "周市再生资源综合利用项目",
         latlng: [121.0112746623, 31.4802199136]

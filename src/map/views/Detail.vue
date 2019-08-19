@@ -20,7 +20,7 @@ export default {
       });
       map.on("load", () => {
         let { name, type, latlng } = data;
-        generateMarker({ name, type, latlng }).addTo(map);
+        generateMarker(this.$router, { name, type, latlng }).addTo(map);
         let bounds = data.bounds;
         new ZTMAP.Layer(
           ZTMAP.GeoJSON.generateLineString(bounds),

@@ -1,7 +1,7 @@
 import * as ZTMAP from "ztmap";
 
 // 生成marker
-const generateMarker = option => {
+const generateMarker = (router, option) => {
   let el = document.createElement("div");
   el.className = "marker-" + (option.type || "community");
   el.innerHTML = option.name;
@@ -10,15 +10,14 @@ const generateMarker = option => {
     el.addEventListener("click", () => {
       let { name, type } = option;
       if (window.top === window) {
-        let hash =
+        let path =
           type === "special" ? `/city` : `/detail?name=${name}&type=${type}`;
-        location.hash = hash;
+        router.push({ path });
       } else {
         window.parent.postMessage({ name, type }, "http://50.78.138.6:7099");
       }
     });
   }
-
   return new ZTMAP.HtmlMarker(el, option.latlng, { draggable: false });
 };
 
