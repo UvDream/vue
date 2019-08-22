@@ -51,6 +51,9 @@ export default {
     this.ws.onclose = function() {
       console.log("Connection closed.");
     };
+    this.ws.onmessage = function(e) {
+      console.log(e.data);
+    };
   }
 };
 </script>

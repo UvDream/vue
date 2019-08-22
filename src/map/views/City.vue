@@ -11,7 +11,9 @@
       </el-checkbox>
       <div style="margin: 15px 0;"></div>
       <el-checkbox-group v-model="checked" @change="handleCheckedChange">
-        <el-checkbox v-for="option in options" :label="option" :key="option">{{option}}</el-checkbox>
+        <el-checkbox v-for="option in options" :label="option" :key="option">{{
+          option
+        }}</el-checkbox>
       </el-checkbox-group>
     </div>
   </div>
@@ -30,9 +32,9 @@ export default {
   data() {
     return {
       checkAll: true,
-      checked: ["学校", "小区"],
+      checked: ["学校", "小区", "企业"],
       options: options,
-      isIndeterminate: true
+      isIndeterminate: false
     };
   },
   methods: {

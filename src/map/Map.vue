@@ -10,7 +10,7 @@ import * as ZTMAP from "ztmap";
 export default {
   mounted() {
     let _this = this;
-    ZTMAP.MAPSTYLE.MAPURL = _this.$store.state.outerMapUrl;
+    ZTMAP.MAPSTYLE.MAPURL = _this.$store.state.innerMapUrl;
     ZTMAP.MAPSTYLE.MAPFONTSURL =
       location.origin + _this.$store.state.mapFontsUrl;
     ZTMAP.MAPSTYLE.MAPSPRITEURL =
@@ -67,7 +67,7 @@ body {
 
 .marker-factory {
   background: url(./assets/images/icon-factory.png) no-repeat center center;
-  color: rgb(132, 235, 222);
+  color: rgb(251, 148, 30);
   @include marker;
 }
 

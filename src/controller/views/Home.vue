@@ -3,25 +3,39 @@
     <div>
       <h3>单位分布</h3>
       <el-row>
-        <el-button type="primary" plain>企业</el-button>
-        <el-button type="primary" plain>商业小区</el-button>
-        <el-button type="primary" plain>动迁小区</el-button>
-        <el-button type="primary" plain>学校</el-button>
-        <el-button type="primary" plain>自然村</el-button>
+        <el-button
+          type="primary"
+          :key="item"
+          v-for="item in group1"
+          @click="btnClick(item)"
+          plain
+        >
+          {{ item }}
+        </el-button>
       </el-row>
       <h3>重点人员</h3>
       <el-row>
-        <el-button type="primary" plain>重点挑头</el-button>
-        <el-button type="primary" plain>积极参与</el-button>
-        <el-button type="primary" plain>关注人员</el-button>
+        <el-button
+          type="primary"
+          :key="item"
+          v-for="item in group2"
+          @click="btnClick(item)"
+          plain
+        >
+          {{ item }}
+        </el-button>
       </el-row>
       <h3>重点小区</h3>
       <el-row>
-        <el-button type="primary" plain>鑫茂东苑</el-button>
-        <el-button type="primary" plain>鑫茂花园</el-button>
-        <el-button type="primary" plain>市北锦苑</el-button>
-        <el-button type="primary" plain>合生颐庭</el-button>
-        <el-button type="primary" plain>市北花园</el-button>
+        <el-button
+          type="primary"
+          :key="item"
+          v-for="item in group3"
+          @click="btnClick(item)"
+          plain
+        >
+          {{ item }}
+        </el-button>
       </el-row>
       <h3>重点挑头、积极参与人员</h3>
       <el-row>
@@ -65,34 +79,51 @@
     <div>
       <h3>单位分布</h3>
       <el-row>
-        <el-button type="primary" plain>情报线索</el-button>
-        <el-button type="primary" plain>指令单</el-button>
-        <el-button type="primary" plain>落地处置</el-button>
-        <el-button type="primary" plain>技侦在控</el-button>
-        <el-button type="primary" plain>网侦在控</el-button>
+        <el-button
+          type="primary"
+          :key="item"
+          v-for="item in group8"
+          @click="btnClick(item)"
+          plain
+        >
+          {{ item }}
+        </el-button>
       </el-row>
       <h3>管控组工作量</h3>
       <el-row>
-        <el-button type="primary" plain>群众工作组</el-button>
-        <el-button type="primary" plain>多位一体组</el-button>
-        <el-button type="primary" plain>情报行动组</el-button>
+        <el-button
+          type="primary"
+          :key="item"
+          v-for="item in group9"
+          @click="btnClick(item)"
+          plain
+        >
+          {{ item }}
+        </el-button>
       </el-row>
       <h3>各类别情报统计</h3>
       <el-row>
-        <el-button type="primary" plain>12345</el-button>
-        <el-button type="primary" plain>派出所(人力情报)</el-button>
-        <el-button type="primary" plain>其他</el-button>
-        <el-button type="primary" plain>上级交办</el-button>
-        <el-button type="primary" plain>网侦</el-button>
-        <el-button type="primary" plain>信访</el-button>
+        <el-button
+          type="primary"
+          :key="item"
+          v-for="item in group10"
+          @click="btnClick(item)"
+          plain
+        >
+          {{ item }}
+        </el-button>
       </el-row>
       <h3>情报落地核查</h3>
       <el-row>
-        <el-button type="primary" plain>传唤审查</el-button>
-        <el-button type="primary" plain>见面约谈</el-button>
-        <el-button type="primary" plain>外地协作</el-button>
-        <el-button type="primary" plain>电话约谈</el-button>
-        <el-button type="primary" plain>刑事拘留</el-button>
+        <el-button
+          type="primary"
+          :key="item"
+          v-for="item in group11"
+          @click="btnClick(item)"
+          plain
+        >
+          {{ item }}
+        </el-button>
       </el-row>
     </div>
   </section>
@@ -103,20 +134,30 @@ export default {
   props: ["ws"],
   data() {
     return {
-      group1: [],
-      group2: [],
-      group3: [],
+      group1: ["企业", "商业小区", "动迁小区", "学校", "自然村"],
+      group2: ["重点挑头", "积极参与", "关注人员"],
+      group3: ["鑫茂东苑", "鑫茂花园", "市北锦苑", "合生颐庭", "市北花园"],
       group4: ["项光锋", "施保山", "王世海", "王禾英", "周福生"],
       group5: ["盛丽珍", "盛秀珍", "盛琴珍", "王伟江"],
       group6: [],
       group7: [],
-      group8: [],
-      group9: []
+      group8: ["情报线索", "指令单", "落地处置", "技侦在控", "网侦在控"],
+      group9: ["群众工作组", "多位一体组", "情报行动组"],
+      group10: [
+        "12345",
+        "派出所(人力情报)",
+        "其他",
+        "上级交办",
+        "网侦",
+        "信访"
+      ],
+      group11: ["传唤审查", "见面约谈", "外地协作", "电话约谈", "刑事拘留"]
     };
   },
   methods: {
     btnClick(name) {
-      this.ws.send(name, "http://50.78.138.6:7099");
+      console.log("the signal is:" + name);
+      this.ws.send(name);
     }
   }
 };
