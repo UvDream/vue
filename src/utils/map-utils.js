@@ -21,6 +21,7 @@ const generateMarker = (router, option) => {
   return new ZTMAP.HtmlMarker(el, option.latlng, { draggable: false });
 };
 
+// 控制marker的显示
 const handleMarkerDisplay = data => {
   Array.prototype.slice
     .call(document.getElementsByClassName("marker-detail"))

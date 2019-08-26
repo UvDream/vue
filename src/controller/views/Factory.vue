@@ -6,11 +6,11 @@
     </el-row>
     <h3>小区人数分布情况</h3>
     <el-row>
-      <el-button type="primary" plain>小区1</el-button>
-      <el-button type="primary" plain>小区2</el-button>
-      <el-button type="primary" plain>小区3</el-button>
-      <el-button type="primary" plain>小区4</el-button>
-      <el-button type="primary" plain>小区5</el-button>
+      <button>小区1</button>
+      <button>小区2</button>
+      <button>小区3</button>
+      <button>小区4</button>
+      <button>小区5</button>
     </el-row>
     <Common></Common>
   </section>

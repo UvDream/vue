@@ -1,4 +1,4 @@
-import { requestJson } from "./api";
+import { requestJson, request } from "./api";
 
 const interfaces = {
   bounds: "../json/map/home/bounds.json",
@@ -17,4 +17,9 @@ const getPoints = () => requestJson(interfaces.points);
 const getSinglePoint = (name, type) =>
   requestJson(interfaces.singlePointBounds(name, type));
 
-export { getBounds, getPoints, getSinglePoint };
+// 获取派出所点位数据
+const getPolicePoints = name => {
+  request("location/getPolicePoints", { name });
+};
+
+export { getBounds, getPoints, getSinglePoint, getPolicePoints };

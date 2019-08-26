@@ -6,13 +6,13 @@
     </el-row>
     <h3>车辆信息</h3>
     <el-row>
-      <el-button type="primary" plain>车辆数量</el-button>
-      <el-button type="primary" plain>重点车辆数量</el-button>
+      <button>车辆数量</button>
+      <button>重点车辆数量</button>
     </el-row>
     <h3>政府机关</h3>
     <el-row>
-      <el-button type="primary" plain>公职人员</el-button>
-      <el-button type="primary" plain>党员</el-button>
+      <button>公职人员</button>
+      <button>党员</button>
     </el-row>
     <Common></Common>
   </section>

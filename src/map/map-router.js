@@ -22,6 +22,11 @@ const router = new Router({
       name: "detail"
     },
     {
+      path: "/police",
+      component: () => import("./views/Police.vue"),
+      name: "police"
+    },
+    {
       path: "*",
       component: () => import("../components/404.vue")
     }

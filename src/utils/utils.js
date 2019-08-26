@@ -5,7 +5,9 @@ const resolveApi = (config, url) => {
   urlArr.map(val => {
     result = result[val];
   });
-  return config.isPublished ? result.remoteUrl : result.localUrl;
+  return config.isPublished
+    ? config.remoteBaseUrl + result.remoteUrl
+    : config.localBaseUrl + result.localUrl;
 };
 
 export { resolveApi };

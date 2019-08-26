@@ -6,8 +6,8 @@
     </el-row>
     <h3>居住小区</h3>
     <el-row>
-      <el-button type="primary" plain>车辆数量</el-button>
-      <el-button type="primary" plain>重点车辆数量</el-button>
+      <button>车辆数量</button>
+      <button>重点车辆数量</button>
     </el-row>
     <Common></Common>
   </section>

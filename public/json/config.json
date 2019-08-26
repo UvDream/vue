@@ -3,9 +3,6 @@
   "localBaseUrl": "json/",
   "remoteBaseUrl": "/api/",
   "api": {
-    "hello": {
-      "localUrl": "data.json",
-      "remoteUrl": ""
-    }
+    
   }
 }

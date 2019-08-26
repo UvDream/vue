@@ -4,7 +4,14 @@
       <el-row>
         <el-col :span="8" :offset="1">周市再生资源综合利用项目大屏</el-col>
         <el-col :span="10">
-          <el-menu default-active="1" mode="horizontal" @select="handleChange">
+          <el-menu
+            background-color="transparent"
+            active-text-color="#ffd04b"
+            text-color="#fff"
+            default-active="1"
+            mode="horizontal"
+            @select="handleChange"
+          >
             <el-menu-item index="1">首页大屏</el-menu-item>
             <el-menu-item index="2">小区大屏</el-menu-item>
             <el-menu-item index="3">学校大屏</el-menu-item>
@@ -63,11 +70,15 @@ html,
 body {
   width: 100%;
   height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 #app {
   width: 100%;
   height: 100%;
+  background: url(./assets/img/bg.png) center center no-repeat;
+  color: #fff;
 
   header {
     height: 60px;
@@ -79,6 +90,27 @@ body {
   section {
     height: calc(100% - 60px);
     overflow: auto;
+
+    button {
+      background: url(./assets/img/btn-bg.png) no-repeat center center;
+      background-size: 100% 100%;
+      border: 0;
+      outline: none;
+      margin-left: 20px;
+      color: rgb(0, 135, 247);
+      height: 38px;
+      line-height: 38px;
+      padding: 0 20px;
+      cursor: pointer;
+
+      &:hover {
+        color: #ffd04b;
+      }
+    }
+
+    .active {
+      color: #ffd04b;
+    }
   }
 }
 </style>
