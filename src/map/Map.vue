@@ -79,32 +79,32 @@ body {
 }
 
 .marker-4g {
-  background: url(./assets/images/icon-community.png) no-repeat center center;
+  background: url(./assets/images/4g.png) no-repeat center center;
   width: 149px;
   @include marker;
 }
 .marker-zt {
-  background: url(./assets/images/icon-factory.png) no-repeat center center;
+  background: url(./assets/images/zt.png) no-repeat center center;
   width: 149px;
   @include marker;
 }
 .marker-mx {
-  background: url(./assets/images/icon-school.png) no-repeat center center;
+  background: url(./assets/images/mx.png) no-repeat center center;
   width: 149px;
   @include marker;
 }
 .marker-rxkk {
-  background: url(./assets/images/icon-town.png) no-repeat center center;
+  background: url(./assets/images/rxkk.png) no-repeat center center;
   width: 149px;
   @include marker;
 }
 .marker-jwq {
-  background: url(./assets/images/icon-community.png) no-repeat center center;
+  background: url(./assets/images/jwt.png) no-repeat center center;
   width: 149px;
   @include marker;
 }
 .marker-jq {
-  background: url(./assets/images/icon-community.png) no-repeat center center;
+  background: url(./assets/images/jq.png) no-repeat center center;
   width: 149px;
   @include marker;
 }

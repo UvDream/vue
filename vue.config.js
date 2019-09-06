@@ -23,6 +23,7 @@ module.exports = {
     // template 默认会去找 public/subpage.html 页面，如果找不到会使用 public/index.html 文件
     // 输出文件会默认的推断为 subpage.html
     map: "src/map/map.js",
-    controller: "src/controller/controller.js"
+    controller: "src/controller/controller.js",
+    hikvision: "src/hikvision/hikvision.js"
   }
 };

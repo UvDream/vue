@@ -10,6 +10,7 @@ export default {
   mounted() {
     let { name } = this.$route.query;
     axios.post("/location/getPolicePoints", { name }).then(result => {
+      // axios.get("/json/map/police/policePoints.json", { name }).then(result => {
       const data = result.data;
       const map = new ZTMAP.Map({
         container: "map",

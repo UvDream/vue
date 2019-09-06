@@ -4,16 +4,12 @@ import Router from "vue-router";
 Vue.use(Router);
 const router = new Router({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: "hikvision",
   routes: [
     {
-      path: "/"
-    },
-    {
-      path: "*",
-      component: () => import("../components/404.vue")
+      path: "/",
+      name: "home"
     }
   ]
 });
-
 export default router;
