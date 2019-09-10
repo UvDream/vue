@@ -39,6 +39,19 @@ const handleMarkerDisplay = data => {
         break;
       case "企业":
         className = "marker-factory";
+        break;
+      case "警情":
+        className = "marker-jq";
+        break;
+      case "3g摩巡":
+        className = "marker-mx";
+        break;
+      case "4g车":
+        className = "marker-4g";
+        break;
+      case "人像卡口":
+        className = "marker-rxkk";
+        break;
     }
     Array.prototype.slice
       .call(document.getElementsByClassName(className))

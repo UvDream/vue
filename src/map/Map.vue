@@ -97,6 +97,7 @@ body {
   background: url(./assets/images/rxkk.png) no-repeat center center;
   width: 149px;
   @include marker;
+  display: none;
 }
 .marker-jwq {
   background: url(./assets/images/jwt.png) no-repeat center center;
