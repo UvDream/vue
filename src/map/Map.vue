@@ -109,4 +109,13 @@ body {
   width: 149px;
   @include marker;
 }
+.marker-hz {
+  background: url(./assets/images/hz.png) no-repeat center center;
+  width: 149px;
+  @include marker;
+}
+
+.el-checkbox {
+  color: #fff;
+}
 </style>

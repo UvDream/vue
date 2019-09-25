@@ -40,6 +40,7 @@ const handleMarkerDisplay = data => {
       case "企业":
         className = "marker-factory";
         break;
+      case "违法警情":
       case "警情":
         className = "marker-jq";
         break;
@@ -51,6 +52,9 @@ const handleMarkerDisplay = data => {
         break;
       case "人像卡口":
         className = "marker-rxkk";
+        break;
+      case "火灾":
+        className = "marker-hz";
         break;
     }
     Array.prototype.slice

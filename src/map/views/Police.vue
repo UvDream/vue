@@ -26,20 +26,18 @@ import * as ZTMAP from "ztmap";
 import axios from "axios";
 import { handleMarkerDisplay } from "../../utils/map-utils";
 
-const options = ["警情", "3g摩巡", "4g车", "人像卡口"];
-
 export default {
   data() {
     return {
       checkAll: false,
-      checked: ["警情", "3g摩巡", "4g车"],
-      options: options,
+      checked: [],
+      options: [],
       isIndeterminate: false
     };
   },
   methods: {
     handleCheckAllChange(val) {
-      this.checked = val ? options : [];
+      this.checked = val ? this.options : [];
       this.isIndeterminate = false;
       handleMarkerDisplay(this.checked);
     },
@@ -52,9 +50,15 @@ export default {
     }
   },
   mounted() {
-    let { name } = this.$route.query;
-    name = name || "";
-    axios.post("/location/getPolicePoints", { name }).then(result => {
+    let { name = "", type = "" } = this.$route.query;
+    if (type) {
+      this.options = ["违法警情", "3g摩巡", "4g车", "人像卡口", "火灾"];
+      this.checked = ["违法警情", "3g摩巡", "4g车", "火灾"];
+    } else {
+      this.options = ["警情", "3g摩巡", "4g车", "人像卡口"];
+      this.checked = ["警情", "3g摩巡", "4g车"];
+    }
+    axios.post("/location/getPolicePoints", { type, name }).then(result => {
       // axios.get("/json/map/police/policePoints.json", { name }).then(result => {
       const data = result.data;
       const map = new ZTMAP.Map({
@@ -77,12 +81,12 @@ export default {
 <style lang="scss" scoped>
 .control-panel {
   position: absolute;
-  width: 240px;
-  height: 80px;
+  width: auto;
+  height: auto;
   background: rgba(13, 93, 152, 0.5);
   top: 20px;
   left: 20px;
-  padding: 20px;
+  padding: 20px 10px;
   border: 4px solid rgb(13, 93, 152);
 }
 </style>
