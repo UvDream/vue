@@ -51,10 +51,19 @@ export default {
   },
   mounted() {
     let { name = "", type = "" } = this.$route.query;
+    let center, zoom;
     if (type) {
       this.options = ["违法警情", "3g摩巡", "4g车", "人像卡口", "火灾"];
       this.checked = ["违法警情", "3g摩巡", "4g车", "火灾"];
+      center = [120.96808724375944, 31.37799640955572];
+      zoom = 12.806063001017806;
     } else {
+      if (name) {
+        zoom = 13.2;
+      } else {
+        center = [120.96669037868332, 31.414776697732762];
+        zoom = 11.5;
+      }
       this.options = ["警情", "3g摩巡", "4g车", "人像卡口"];
       this.checked = ["警情", "3g摩巡", "4g车"];
     }
@@ -63,11 +72,12 @@ export default {
       const data = result.data;
       const map = new ZTMAP.Map({
         container: "map",
-        center: name ? data.center : [120.96669037868332, 31.414776697732762],
-        zoom: name ? 13.2 : 11.5,
+        center: center ? center : data.center,
+        zoom: zoom,
         pitch: name ? 50 : 0
       });
       map.on("load", () => {
+        // map.addDebugControl();
         data.data.map(val => {
           let el = document.createElement("div");
           el.className = `marker-detail marker-${val.type}`;
@@ -78,7 +88,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .control-panel {
   position: absolute;
   width: auto;
@@ -88,5 +98,28 @@ export default {
   left: 20px;
   padding: 20px 10px;
   border: 4px solid rgb(13, 93, 152);
+
+  .el-checkbox {
+    font-size: 30px;
+  }
+
+  .el-checkbox__label {
+    font-size: 30px;
+  }
+
+  .el-checkbox__inner {
+    width: 30px;
+    height: 30px;
+  }
+
+  .el-checkbox__inner::after {
+    height: 20px;
+    left: 12px;
+    top: 2px;
+  }
+
+  .el-checkbox__input.is-indeterminate .el-checkbox__inner::before {
+    top: 13px;
+  }
 }
 </style>

@@ -19,7 +19,7 @@ export default {
         pitch: data.pitch
       });
       map.on("load", () => {
-        map.addDebugControl();
+        // map.addDebugControl();
         let { name, type, latlng } = data;
         generateMarker(this.$router, { name, type, latlng }).addTo(map);
         let bounds = data.bounds;
