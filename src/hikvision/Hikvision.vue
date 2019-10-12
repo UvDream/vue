@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    hikvision
+    <router-view></router-view>
   </div>
 </template>
 <script>

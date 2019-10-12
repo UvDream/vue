@@ -8,7 +8,8 @@ const router = new Router({
   routes: [
     {
       path: "/",
-      name: "home"
+      name: "setting",
+      component: () => import("./views/Setting.vue")
     }
   ]
 });

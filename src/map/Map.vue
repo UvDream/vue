@@ -10,7 +10,7 @@ import * as ZTMAP from "ztmap";
 export default {
   mounted() {
     let _this = this;
-    ZTMAP.MAPSTYLE.MAPURL = _this.$store.state.innerMapUrl;
+    ZTMAP.MAPSTYLE.MAPURL = _this.$store.state.outerMapUrl;
     ZTMAP.MAPSTYLE.MAPFONTSURL =
       location.origin + _this.$store.state.mapFontsUrl;
     ZTMAP.MAPSTYLE.MAPSPRITEURL =
