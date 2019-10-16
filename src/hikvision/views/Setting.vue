@@ -158,7 +158,7 @@ export default {
             message: "添加成功！",
             type: "success"
           });
-          this.loadTab2();
+          this.initPage();
         } else {
           this.$message({
             message: "服务器错误！",
@@ -175,7 +175,7 @@ export default {
             message: "删除成功！",
             type: "success"
           });
-          this.loadTab2();
+          this.initPage();
         } else {
           this.$message({
             message: "服务器错误！",
@@ -186,7 +186,7 @@ export default {
     },
     // 格式化是否在线
     formaterOnline(row) {
-      return row.isOnline == 0 ? "离线" : "在线";
+      return row.isOnline == 0 ? "在线" : "离线";
     },
     // 加载tab1
     loadTab1() {
