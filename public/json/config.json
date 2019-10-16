@@ -26,7 +26,7 @@
       "police": {
         "getPolicePoints": {
           "localUrl": "map/police/policePoints.json",
-          "remoteUrl": "/location/getPolicePoints"
+          "remoteUrl": "location/getPolicePoints"
         }
       }
     }

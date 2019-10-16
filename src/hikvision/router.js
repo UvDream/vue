@@ -10,6 +10,11 @@ const router = new Router({
       path: "/",
       name: "setting",
       component: () => import("./views/Setting.vue")
+    },
+    {
+      path: "/",
+      name: "404",
+      component: () => import("@/components/404.vue")
     }
   ]
 });

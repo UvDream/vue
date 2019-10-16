@@ -7,15 +7,15 @@ const resolveApi = (config, url, isIndex, data) => {
   });
   let resultUrl = "";
   if (config.isPublished) {
-    resultUrl = config.remoteBaseUrl + result.remoteUrl;
+    resultUrl = result.remoteUrl;
   } else {
-    resultUrl = isIndex ? config.indexLocalBaseUrl : config.localBaseUrl;
     resultUrl += result.localUrl + "?";
     Object.keys(data).forEach(key => {
       resultUrl += `${key}=${data[key]}&`;
     });
+    resultUrl = resultUrl.slice(0, -1);
   }
-  return resultUrl.slice(0, -1);
+  return resultUrl;
 };
 
 export { resolveApi };

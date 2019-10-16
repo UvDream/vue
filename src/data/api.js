@@ -1,12 +1,11 @@
 import axios from "axios";
 import { resolveApi } from "../utils/utils";
-import { Promise } from "core-js";
 
 // 缓存的配置文件
 let cacheConfig;
 
 // 发送请求，处理了发布与否
-const request = ({ url, data = {}, type = "post", isIndex = false }) => {
+const request = ({ url, data = {}, method = "post", isIndex = false }) => {
   return new Promise(async (resolve, reject) => {
     // 如果缓存到session里面了就取出来，如果没有就请求一次
     if (sessionStorage.getItem("cacheConfig")) {
@@ -22,11 +21,11 @@ const request = ({ url, data = {}, type = "post", isIndex = false }) => {
         ? cacheConfig.indexLocalBaseUrl
         : cacheConfig.localBaseUrl
     });
-    type = cacheConfig.isPublished ? type : "get";
+    method = cacheConfig.isPublished ? method : "get";
     _axios({
       url: resolveApi(cacheConfig, url, isIndex, data),
       data,
-      type
+      method
     })
       .then(result => {
         result.status === 200
