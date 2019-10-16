@@ -10,28 +10,28 @@
           :header-cell-style="{ background: '#f7f7f7' }"
           :data="tab1.data"
           style="width: 100%"
+          height="100%"
         >
-          <el-table-column prop="id" align="center" label="通道ID" width="180">
+          <el-table-column prop="id" align="center" label="通道ID">
           </el-table-column>
-          <el-table-column
-            prop="name"
-            align="center"
-            label="摄像机名称"
-            width="180"
-          >
+          <el-table-column prop="name" align="center" label="摄像机名称">
           </el-table-column>
           <el-table-column prop="lng" align="center" label="经度">
           </el-table-column>
           <el-table-column prop="lat" align="center" label="纬度">
           </el-table-column>
-          <el-table-column prop="isOnline" align="center" label="是否在线">
+          <el-table-column
+            :formatter="formaterOnline"
+            align="center"
+            label="是否在线"
+          >
           </el-table-column>
           <el-table-column prop="operation" align="center" label="操作">
             <template slot-scope="scope">
               <el-button
                 size="mini"
                 type="primary"
-                @click="handleAdd(scope.row)"
+                @click="handleAdd(scope.row.id)"
                 >添加</el-button
               >
             </template>
@@ -41,8 +41,8 @@
       <footer>
         <el-pagination
           background
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
+          @size-change="tab1SizeChange"
+          @current-change="tab1CurrentChange"
           :current-page="tab1.page.currentPage"
           :page-sizes="tab1.page.pageSizes"
           :page-size="tab1.page.pageSize"
@@ -61,29 +61,29 @@
         <el-table
           :header-cell-style="{ background: '#f7f7f7' }"
           :data="tab2.data"
+          height="100%"
           style="width: 100%"
         >
-          <el-table-column prop="id" align="center" label="通道ID" width="180">
+          <el-table-column prop="id" align="center" label="通道ID">
           </el-table-column>
-          <el-table-column
-            prop="name"
-            align="center"
-            label="摄像机名称"
-            width="180"
-          >
+          <el-table-column prop="name" align="center" label="摄像机名称">
           </el-table-column>
           <el-table-column prop="lng" align="center" label="经度">
           </el-table-column>
           <el-table-column prop="lat" align="center" label="纬度">
           </el-table-column>
-          <el-table-column prop="isOnline" align="center" label="是否在线">
+          <el-table-column
+            :formatter="formaterOnline"
+            align="center"
+            label="是否在线"
+          >
           </el-table-column>
           <el-table-column prop="operation" align="center" label="操作">
             <template slot-scope="scope">
               <el-button
                 size="mini"
                 type="danger"
-                @click="handleDelete(scope.row)"
+                @click="handleDelete(scope.row.id)"
                 >删除</el-button
               >
             </template>
@@ -93,8 +93,8 @@
       <footer>
         <el-pagination
           background
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
+          @size-change="tab2SizeChange"
+          @current-change="tab2CurrentChange"
           :current-page="tab2.page.currentPage"
           :page-sizes="tab2.page.pageSizes"
           :page-size="tab2.page.pageSize"
@@ -108,65 +108,119 @@
 </template>
 
 <script>
-import axios from "axios";
+import { request } from "@/data/api";
 
 export default {
   data() {
     return {
       tab1: {
-        data: [
-          {
-            id: 1,
-            name: 2,
-            lng: 3,
-            lat: 4,
-            isOnline: 5,
-            operation: 6
-          }
-        ],
+        data: [],
         page: {
-          total: 100,
+          total: 0,
           currentPage: 1,
           pageSize: 10,
-          pageSizes: [10, 20, 30]
+          pageSizes: [10, 30, 50]
         }
       },
       tab2: {
-        data: [
-          {
-            id: 1,
-            name: 2,
-            lng: 3,
-            lat: 4,
-            isOnline: 5,
-            operation: 6
-          }
-        ],
+        data: [],
         page: {
-          total: 100,
+          total: 0,
           currentPage: 1,
           pageSize: 10,
-          pageSizes: [10, 20, 30]
+          pageSizes: [10, 30, 50]
         }
       }
     };
   },
   methods: {
-    handleSizeChange(val) {},
-    handleCurrentChange(val) {},
-    handleAdd(row) {},
-    handleDelete(row) {},
-    initTab1() {
+    tab1SizeChange(val) {
+      this.tab1.page.pageSize = val;
+      this.loadTab1();
+    },
+    tab1CurrentChange(val) {
+      this.tab1.page.currentPage = val;
+      this.loadTab1();
+    },
+    tab2SizeChange(val) {
+      this.tab2.page.pageSize = val;
+      this.loadTab2();
+    },
+    tab2CurrentChange(val) {
+      this.tab2.page.currentPage = val;
+      this.loadTab2();
+    },
+    // 添加
+    handleAdd(id) {
+      request({ url: "hikvision/add", data: { id } }).then(result => {
+        if (result.code === 200) {
+          this.$message({
+            message: "添加成功！",
+            type: "success"
+          });
+          this.loadTab2();
+        } else {
+          this.$message({
+            message: "服务器错误！",
+            type: "error"
+          });
+        }
+      });
+    },
+    // 删除
+    handleDelete(id) {
+      request({ url: "hikvision/delete", data: { id } }).then(result => {
+        if (result.code === 200) {
+          this.$message({
+            message: "删除成功！",
+            type: "success"
+          });
+          this.loadTab2();
+        } else {
+          this.$message({
+            message: "服务器错误！",
+            type: "error"
+          });
+        }
+      });
+    },
+    // 格式化是否在线
+    formaterOnline(row) {
+      return row.isOnline == 0 ? "离线" : "在线";
+    },
+    // 加载tab1
+    loadTab1() {
       let _this = this;
-      let { currentPage, paseSize } = _this.tab2.page;
-      axios.post("/getAllCamera", { currentPage, paseSize }).then(result => {});
+      let { currentPage, pageSize } = _this.tab1.page;
+      request({
+        url: "hikvision/getAll",
+        data: { currentPage, pageSize }
+      }).then(result => {
+        _this.tab1.page.total = result.total;
+        _this.tab1.data = result.data;
+      });
     },
-    initTab2() {
-      axios.post("/getSelectedCamera", {});
+    // 加载tab2
+    loadTab2() {
+      let _this = this;
+      let { currentPage, pageSize } = _this.tab2.page;
+      request({
+        url: "hikvision/getSelected",
+        data: { currentPage, pageSize }
+      }).then(result => {
+        _this.tab2.page.total = result.total;
+        _this.tab2.data = result.data;
+      });
     },
-    initPage() {}
+    // 初始化页面
+    initPage() {
+      this.loadTab1();
+      this.loadTab2();
+    }
   },
-  mounted() {}
+  mounted() {
+    this.initPage();
+  }
 };
 </script>
 
@@ -192,10 +246,11 @@ export default {
     }
 
     & > div {
-      height: calc(100% - 60px);
+      height: calc(100% - 70px);
     }
 
     & > footer {
+      margin-top: 10px;
       height: 30px;
 
       & > div {

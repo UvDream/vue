@@ -1,8 +1,34 @@
 {
   "isPublished": false,
-  "localBaseUrl": "json/",
-  "remoteBaseUrl": "/api/",
+  "localBaseUrl": "../json/",
+  "indexLocalBaseUrl": "json/",
+  "remoteBaseUrl": "/",
   "api": {
-    
+    "hikvision": {
+      "getAll": {
+        "localUrl": "hikvision/getAll.json",
+        "remoteUrl": "hikvision/getAll"
+      },
+      "getSelected": {
+        "localUrl": "hikvision/getSelected.json",
+        "remoteUrl": "hikvision/getSelected"
+      },
+      "add": {
+        "localUrl": "common/success.json",
+        "remoteUrl": "hikvision/add"
+      },
+      "delete": {
+        "localUrl": "common/success.json",
+        "remoteUrl": "hikvision/delete"
+      }
+    },
+    "map": {
+      "police": {
+        "getPolicePoints": {
+          "localUrl": "map/police/policePoints.json",
+          "remoteUrl": "/location/getPolicePoints"
+        }
+      }
+    }
   }
 }

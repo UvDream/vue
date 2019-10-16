@@ -6,16 +6,32 @@
 
 <script>
 import * as ZTMAP from "ztmap";
+import { requstConfig } from "@/data/api";
 
 export default {
+  methods: {
+    initMapParam() {
+      let _this = this;
+      return new Promise(async resolve => {
+        if (!sessionStorage.getItem("cacheConfig")) {
+          await requstConfig();
+        }
+        let isPublished = JSON.parse(sessionStorage.getItem("cacheConfig"))
+          .isPublished;
+        ZTMAP.MAPSTYLE.MAPURL = isPublished
+          ? _this.$store.state.innerMapUrl
+          : _this.$store.state.outerMapUrl;
+        ZTMAP.MAPSTYLE.MAPFONTSURL =
+          location.origin + _this.$store.state.mapFontsUrl;
+        ZTMAP.MAPSTYLE.MAPSPRITEURL =
+          location.origin + _this.$store.state.mapSpriteUrl;
+        ZTMAP.MAPSTYLE.STYLE = ZTMAP.MAPBASICLAYERSTYLE.KAILIDE_DARK;
+        resolve();
+      });
+    }
+  },
   mounted() {
-    let _this = this;
-    ZTMAP.MAPSTYLE.MAPURL = _this.$store.state.outerMapUrl;
-    ZTMAP.MAPSTYLE.MAPFONTSURL =
-      location.origin + _this.$store.state.mapFontsUrl;
-    ZTMAP.MAPSTYLE.MAPSPRITEURL =
-      location.origin + _this.$store.state.mapSpriteUrl;
-    ZTMAP.MAPSTYLE.STYLE = ZTMAP.MAPBASICLAYERSTYLE.KAILIDE_DARK;
+    Promise.resolve().then(() => this.initMapParam());
   }
 };
 </script>
