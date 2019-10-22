@@ -18,8 +18,7 @@ const getSinglePoint = (name, type) =>
   requestJson(interfaces.singlePointBounds(name, type));
 
 // 获取派出所点位数据
-const getPolicePoints = name => {
-  request("location/getPolicePoints", { name });
-};
+const getPolicePoints = data =>
+  request({ url: "map/police/getPolicePoints", data });
 
 export { getBounds, getPoints, getSinglePoint, getPolicePoints };

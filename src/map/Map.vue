@@ -81,6 +81,7 @@ body {
   @include marker;
 }
 
+.marker-allFactory,
 .marker-factory {
   background: url(./assets/images/icon-factory.png) no-repeat center center;
   color: rgb(251, 148, 30);

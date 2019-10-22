@@ -11,9 +11,9 @@
       </el-checkbox>
       <div style="margin: 15px 0;"></div>
       <el-checkbox-group v-model="checked" @change="handleCheckedChange">
-        <el-checkbox v-for="option in options" :label="option" :key="option">{{
-          option
-        }}</el-checkbox>
+        <el-checkbox v-for="option in options" :label="option" :key="option">
+          {{ option }}
+        </el-checkbox>
       </el-checkbox-group>
     </div>
   </div>
@@ -26,7 +26,7 @@ import { generateMarker, handleMarkerDisplay } from "../../utils/map-utils";
 import * as ZTMAP from "ztmap";
 import { getBounds, getPoints } from "../../data/map";
 
-const options = ["学校", "小区", "企业"];
+const options = ["学校", "小区", "企业", "全部企业"];
 
 export default {
   data() {
@@ -52,10 +52,18 @@ export default {
     }
   },
   mounted() {
+    // 判断是否市区大屏
+    let { isUrban = 0 } = this.$route.query;
+    let center =
+        isUrban == 0
+          ? [120.99444786781726, 31.448474728362854]
+          : [120.96867907688352, 31.44367759697542],
+      zoom = isUrban == 0 ? 13.3 : 15.3;
+
     const map = new ZTMAP.Map({
       container: "map",
-      center: [120.99444786781726, 31.448474728362854],
-      zoom: 13.3,
+      center,
+      zoom,
       pitch: 50
     });
     map.on("load", () => {
@@ -63,6 +71,11 @@ export default {
         let data = result.data.data;
         data.map(val => {
           generateMarker(this.$router, val).addTo(map);
+          Array.from(document.getElementsByClassName("marker-allFactory")).map(
+            val => {
+              val.style.display = "none";
+            }
+          );
         });
       });
 
@@ -93,8 +106,6 @@ export default {
 <style lang="scss" scoped>
 .control-panel {
   position: absolute;
-  width: 240px;
-  height: 80px;
   background: rgba(13, 93, 152, 0.5);
   top: 20px;
   left: 20px;

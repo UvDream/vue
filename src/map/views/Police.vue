@@ -11,9 +11,9 @@
       </el-checkbox>
       <div style="margin: 15px 0;"></div>
       <el-checkbox-group v-model="checked" @change="handleCheckedChange">
-        <el-checkbox v-for="option in options" :label="option" :key="option">{{
-          option
-        }}</el-checkbox>
+        <el-checkbox v-for="option in options" :label="option" :key="option">
+          {{ option }}
+        </el-checkbox>
       </el-checkbox-group>
     </div>
   </div>
@@ -23,7 +23,7 @@
 import "element-ui/lib/theme-chalk/checkbox.css";
 import "element-ui/lib/theme-chalk/checkbox-group.css";
 import * as ZTMAP from "ztmap";
-import { request } from "@/data/api";
+import { getPolicePoints } from "@/data/map";
 import { handleMarkerDisplay } from "../../utils/map-utils";
 
 export default {
@@ -67,27 +67,23 @@ export default {
       this.options = ["警情", "3g摩巡", "4g车", "人像卡口"];
       this.checked = ["警情", "3g摩巡", "4g车"];
     }
-    request({ url: "map/police/getPolicePoints", data: { type, name } }).then(
-      result => {
-        const data = result.data;
-        const map = new ZTMAP.Map({
-          container: "map",
-          center: center ? center : data.center,
-          zoom: zoom,
-          pitch: name ? 50 : 0
+    getPolicePoints({ type, name }).then(result => {
+      const data = result.data;
+      const map = new ZTMAP.Map({
+        container: "map",
+        center: center ? center : data.center,
+        zoom: zoom,
+        pitch: name ? 50 : 0
+      });
+      map.on("load", () => {
+        // map.addDebugControl();
+        data.map(val => {
+          let el = document.createElement("div");
+          el.className = `marker-detail marker-${val.type}`;
+          new ZTMAP.HtmlMarker(el, val.latlng, { draggable: false }).addTo(map);
         });
-        map.on("load", () => {
-          // map.addDebugControl();
-          data.map(val => {
-            let el = document.createElement("div");
-            el.className = `marker-detail marker-${val.type}`;
-            new ZTMAP.HtmlMarker(el, val.latlng, { draggable: false }).addTo(
-              map
-            );
-          });
-        });
-      }
-    );
+      });
+    });
   }
 };
 </script>
