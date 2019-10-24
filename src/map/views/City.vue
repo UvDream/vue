@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <div id="map"></div>
     <div class="control-panel">
       <el-checkbox
@@ -22,17 +22,22 @@
 <script>
 import "element-ui/lib/theme-chalk/checkbox.css";
 import "element-ui/lib/theme-chalk/checkbox-group.css";
-import { generateMarker, handleMarkerDisplay } from "../../utils/map-utils";
+import {
+  generateMarker,
+  handleMarkerDisplay,
+  genrateHikMarker
+} from "../../utils/map-utils";
 import * as ZTMAP from "ztmap";
 import { getBounds, getPoints } from "../../data/map";
+import { request } from "@/data/api";
 
-const options = ["学校", "小区", "企业", "全部企业"];
+const options = ["学校", "小区", "企业", "全部企业", "摄像头"];
 
 export default {
   data() {
     return {
       checkAll: true,
-      checked: ["学校", "小区", "企业"],
+      checked: ["学校", "小区", "企业", "摄像头"],
       options: options,
       isIndeterminate: false
     };
@@ -71,12 +76,12 @@ export default {
         let data = result.data.data;
         data.map(val => {
           generateMarker(this.$router, val).addTo(map);
-          Array.from(document.getElementsByClassName("marker-allFactory")).map(
-            val => {
-              val.style.display = "none";
-            }
-          );
         });
+        Array.from(document.getElementsByClassName("marker-allFactory")).map(
+          val => {
+            val.style.display = "none";
+          }
+        );
       });
 
       getBounds().then(result => {
@@ -98,6 +103,13 @@ export default {
         name: "周市再生资源综合利用项目",
         latlng: [121.0112746623, 31.4802199136]
       }).addTo(map);
+
+      // 海康的地图点位
+      request({ url: "hikvision/getCameraPoints" }).then(result => {
+        result.data.map(val => {
+          genrateHikMarker(val).addTo(map);
+        });
+      });
     });
   }
 };
@@ -111,5 +123,9 @@ export default {
   left: 20px;
   padding: 20px;
   border: 4px solid rgb(13, 93, 152);
+}
+
+#app > div {
+  height: 100%;
 }
 </style>

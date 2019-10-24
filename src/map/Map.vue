@@ -43,6 +43,7 @@ export default {
   font-size: 24px;
   text-align: center;
   cursor: pointer;
+  position: absolute;
 }
 
 html,
@@ -132,7 +133,18 @@ body {
   @include marker;
 }
 
+.marker-camera {
+  background: url(./assets/images/camera.png) no-repeat center center;
+  color: rgba(218, 116, 52, 1);
+  @include marker;
+}
+
 .el-checkbox {
   color: #fff;
+}
+
+.hls-player {
+  width: 220px;
+  height: 150px;
 }
 </style>

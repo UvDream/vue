@@ -1,4 +1,6 @@
 import * as ZTMAP from "ztmap";
+import { request } from "@/data/api";
+import * as Hls from "hls.js";
 
 // 生成marker
 const generateMarker = (router, option) => {
@@ -19,6 +21,31 @@ const generateMarker = (router, option) => {
     });
   }
   return new ZTMAP.HtmlMarker(el, option.latlng, { draggable: false });
+};
+
+// 生成海康的marker
+const genrateHikMarker = val => {
+  let el = document.createElement("div");
+  el.className = "marker-camera marker-detail";
+  el.setAttribute("indexCode", val.id);
+  el.innerHTML = val.name;
+  let result = new ZTMAP.HtmlMarker(el, val.latlng, { draggable: false });
+  result.onClickPopup(`<div class="hls-player"></div>`, false, null, e => {
+    let indexCode = e.target.getAttribute("indexCode");
+    request({
+      url: "hikvision/getCameraHLS",
+      data: { indexCode }
+    }).then(result => {
+      let hls = new Hls(),
+        container = document.querySelector(".hls-player");
+      hls.loadSource(result.playrealUrl);
+      hls.attachMedia(container);
+      hls.on(Hls.Events.MANIFEST_PARSED, function() {
+        container.play();
+      });
+    });
+  });
+  return result;
 };
 
 // 控制marker的显示
@@ -59,6 +86,8 @@ const handleMarkerDisplay = data => {
       case "火灾":
         className = "marker-hz";
         break;
+      case "摄像头":
+        className = "marker-camera";
     }
     Array.prototype.slice
       .call(document.getElementsByClassName(className))
@@ -68,4 +97,4 @@ const handleMarkerDisplay = data => {
   });
 };
 
-export { generateMarker, handleMarkerDisplay };
+export { generateMarker, handleMarkerDisplay, genrateHikMarker };
