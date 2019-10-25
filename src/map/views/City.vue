@@ -107,7 +107,7 @@ export default {
       // 海康的地图点位
       request({ url: "hikvision/getCameraPoints" }).then(result => {
         result.data.map(val => {
-          genrateHikMarker(val).addTo(map);
+          genrateHikMarker(val, isUrban).addTo(map);
         });
       });
     });

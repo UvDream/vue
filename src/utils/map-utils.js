@@ -24,27 +24,37 @@ const generateMarker = (router, option) => {
 };
 
 // 生成海康的marker
-const genrateHikMarker = val => {
+const genrateHikMarker = (val, isUrban) => {
   let el = document.createElement("div");
   el.className = "marker-camera marker-detail";
   el.setAttribute("indexCode", val.id);
   el.innerHTML = val.name;
   let result = new ZTMAP.HtmlMarker(el, val.latlng, { draggable: false });
-  result.onClickPopup(`<video class="hls-player"></video>`, true, null, e => {
-    let indexCode = e.target.getAttribute("indexCode");
-    request({
-      url: "hikvision/getCameraHLS",
-      data: { indexCode }
-    }).then(result => {
-      let hls = new Hls(),
-        container = document.querySelector(".hls-player");
-      hls.loadSource(result.playrealUrl);
-      hls.attachMedia(container);
-      hls.on(Hls.Events.MANIFEST_PARSED, function() {
-        container.play();
+  let { width, height } =
+    isUrban == 0 ? { width: 1400, height: 920 } : { width: 2900, height: 2300 };
+  result.onClickPopup(
+    `<video 
+        style="width: ${width}px;height: ${height}px;"
+        class="hls-player" control>
+     </video>`,
+    false,
+    null,
+    e => {
+      let indexCode = e.target.getAttribute("indexCode");
+      request({
+        url: "hikvision/getCameraHLS",
+        data: { indexCode }
+      }).then(result => {
+        let hls = new Hls(),
+          container = document.querySelector(".hls-player");
+        hls.loadSource(result.playrealUrl);
+        hls.attachMedia(container);
+        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+          container.play();
+        });
       });
-    });
-  });
+    }
+  );
   return result;
 };
 

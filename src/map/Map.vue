@@ -143,13 +143,8 @@ body {
   color: #fff;
 }
 
-.hls-player {
-  width: 400px;
-  height: 300px;
-}
-
 .mapboxgl-popup {
-  max-width: 500px !important;
+  max-width: 2900px !important;
 }
 
 .mapboxgl-popup-content {
