@@ -30,7 +30,7 @@ const genrateHikMarker = val => {
   el.setAttribute("indexCode", val.id);
   el.innerHTML = val.name;
   let result = new ZTMAP.HtmlMarker(el, val.latlng, { draggable: false });
-  result.onClickPopup(`<div class="hls-player"></div>`, false, null, e => {
+  result.onClickPopup(`<video class="hls-player"></video>`, true, null, e => {
     let indexCode = e.target.getAttribute("indexCode");
     request({
       url: "hikvision/getCameraHLS",

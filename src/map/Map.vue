@@ -144,7 +144,16 @@ body {
 }
 
 .hls-player {
-  width: 220px;
-  height: 150px;
+  width: 400px;
+  height: 300px;
+}
+
+.mapboxgl-popup {
+  max-width: 500px !important;
+}
+
+.mapboxgl-popup-content {
+  padding: 0 !important;
+  margin: 0 !important;
 }
 </style>
