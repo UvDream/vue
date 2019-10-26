@@ -142,7 +142,7 @@ export default {
           { name: "鑫茂东苑", isActive: false },
           { name: "鑫茂花园", isActive: false },
           { name: "市北锦苑", isActive: false },
-          { name: "合生颐庭", isActive: false },
+          { name: "合生颐廷", isActive: false },
           { name: "市北花园", isActive: false }
         ],
         [
