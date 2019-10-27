@@ -29,6 +29,10 @@
         "localUrl": "hikvision/getCameraHLS.json",
         "remoteUrl": "hikvision/getCameraHLS"
       },
+      "getAllCameraPoints": {
+        "localUrl": "hikvision/getAllCameraPoints.json",
+        "remoteUrl": "hikvision/getAllCameraPoints"
+      },
       "getVideo": {
         "localUrl": "hikvision/getVideo.json",
         "remoteUrl": "hikvision/getVideo"

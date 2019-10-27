@@ -133,9 +133,11 @@ body {
   width: 149px;
   @include marker;
 }
-.marker-hz {
+.marker-hz,
+.marker-allCamera {
   background: url(./assets/images/hz.png) no-repeat center center;
   width: 149px;
+  color: red;
   @include marker;
 }
 

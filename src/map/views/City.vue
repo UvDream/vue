@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       checkAll: true,
-      checked: ["学校", "小区", "企业", "摄像头"],
+      checked: ["学校", "小区", "企业", "摄像头", "全部摄像头"],
       options: options,
       isIndeterminate: false
     };
@@ -45,10 +45,12 @@ export default {
       handleMarkerDisplay(this.checked);
     },
     handleCheckedChange(value) {
+      console.log(value);
       let checkedCount = value.length;
       this.checkAll = checkedCount === this.options.length;
       this.isIndeterminate =
         checkedCount > 0 && checkedCount < this.options.length;
+
       handleMarkerDisplay(this.checked);
     }
   },
@@ -100,8 +102,16 @@ export default {
         latlng: [121.0112746623, 31.4802199136]
       }).addTo(map);
 
-      // 海康的地图点位
+      // 海康的地图摄像头点位
       request({ url: "hikvision/getCameraPoints" }).then(result => {
+        console.log("摄像头", result);
+        result.data.map(val => {
+          genrateHikMarker(val, isUrban).addTo(map);
+        });
+      });
+      // 全部摄像头
+      request({ url: "hikvision/getAllCameraPoints" }).then(result => {
+        console.log("全部摄像头", result);
         result.data.map(val => {
           genrateHikMarker(val, isUrban).addTo(map);
         });

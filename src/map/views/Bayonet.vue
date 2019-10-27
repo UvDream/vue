@@ -162,7 +162,8 @@ export default {
       this.searchMap(e.target.innerHTML);
     },
     searchMap(name) {
-      request({ url: "hikvision/getVideo", data: { name } }).then(res => {
+      let keyName = name;
+      request({ url: "hikvision/getVideo", data: { keyName } }).then(res => {
         console.log(res);
         this.list = res.data;
       });
