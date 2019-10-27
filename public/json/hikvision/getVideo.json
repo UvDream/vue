@@ -1,4 +1,39 @@
 {
     "code": 200,
-    "data": {}
+    "data": {
+        "leftData": {
+            "kname": "zzz",
+            "kgrade": "12",
+            "organizer": "未知",
+            "trafficFlow": "xxx",
+            "position": "昆山",
+            "principalName": "路人甲",
+            "principalPhone": "123"
+        },
+        "rightData": {
+            "policeForce": "12",
+            "firearms": "12",
+            "oneClickAdjustment": "2",
+            "lawEnforcementInstrument": "1",
+            "checkParkingSpace": "12",
+            "radio": "21",
+            "policeService": "12"
+        },
+        "video1": {
+            "name": "这是名字",
+            "url": ""
+        },
+        "video2": {
+            "name": "",
+            "url": ""
+        },
+        "video3": {
+            "name": "",
+            "url": ""
+        },
+        "video4": {
+            "name": "",
+            "url": ""
+        }
+    }
 }
