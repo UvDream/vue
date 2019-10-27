@@ -6,14 +6,10 @@
         :indeterminate="isIndeterminate"
         v-model="checkAll"
         @change="handleCheckAllChange"
-      >
-        全选
-      </el-checkbox>
+      >全选</el-checkbox>
       <div style="margin: 15px 0;"></div>
       <el-checkbox-group v-model="checked" @change="handleCheckedChange">
-        <el-checkbox v-for="option in options" :label="option" :key="option">
-          {{ option }}
-        </el-checkbox>
+        <el-checkbox v-for="option in options" :label="option" :key="option">{{ option }}</el-checkbox>
       </el-checkbox-group>
     </div>
   </div>

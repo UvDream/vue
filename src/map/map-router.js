@@ -27,6 +27,11 @@ const router = new Router({
       name: "police"
     },
     {
+      path: "/bayonet",
+      component: () => import("./views/Bayonet.vue"),
+      name: "bayonet"
+    },
+    {
       path: "*",
       component: () => import("../components/404.vue")
     }

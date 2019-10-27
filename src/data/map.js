@@ -20,5 +20,14 @@ const getSinglePoint = (name, type) =>
 // 获取派出所点位数据
 const getPolicePoints = data =>
   request({ url: "map/police/getPolicePoints", data });
+// 获取卡口所有点位数据
+const getBayonetPoints = data =>
+  request({ url: "map/bayonet/getBayonetPoints", data });
 
-export { getBounds, getPoints, getSinglePoint, getPolicePoints };
+export {
+  getBounds,
+  getPoints,
+  getSinglePoint,
+  getPolicePoints,
+  getBayonetPoints
+};

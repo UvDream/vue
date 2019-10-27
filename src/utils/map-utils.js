@@ -9,16 +9,24 @@ const generateMarker = (router, option) => {
   el.innerHTML = option.name;
   if (!option.addNoEvent) {
     el.className += " marker-detail";
-    el.addEventListener("click", () => {
-      let { name, type } = option;
-      if (window.top === window) {
-        let path =
-          type === "special" ? `/city` : `/detail?name=${name}&type=${type}`;
-        router.push({ path });
-      } else {
-        window.parent.postMessage({ name, type }, "http://50.78.138.6:7099");
-      }
-    });
+    el.style.zIndex = "10";
+    !option.to
+      ? el.addEventListener("click", () => {
+          let { name, type } = option;
+          if (window.top === window) {
+            let path =
+              type === "special"
+                ? `/city`
+                : `/detail?name=${name}&type=${type}`;
+            router.push({ path });
+          } else {
+            window.parent.postMessage(
+              { name, type },
+              "http://50.78.138.6:7099"
+            );
+          }
+        })
+      : "";
   }
   return new ZTMAP.HtmlMarker(el, option.latlng, { draggable: false });
 };
@@ -98,6 +106,16 @@ const handleMarkerDisplay = data => {
         break;
       case "摄像头":
         className = "marker-camera";
+        break;
+      case "一类卡口":
+        className = "marker-op";
+        break;
+      case "三类卡口":
+        className = "marker-tp";
+        break;
+      case "无类卡口":
+        className = "marker-np";
+        break;
     }
     Array.prototype.slice
       .call(document.getElementsByClassName(className))

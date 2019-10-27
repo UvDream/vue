@@ -28,6 +28,10 @@
       "getCameraHLS": {
         "localUrl": "hikvision/getCameraHLS.json",
         "remoteUrl": "hikvision/getCameraHLS"
+      },
+      "getVideo": {
+        "localUrl": "hikvision/getVideo.json",
+        "remoteUrl": "hikvision/getVideo"
       }
     },
     "map": {
@@ -35,6 +39,12 @@
         "getPolicePoints": {
           "localUrl": "map/police/policePoints.json",
           "remoteUrl": "location/getPolicePoints"
+        }
+      },
+      "bayonet": {
+        "getBayonetPoints": {
+          "localUrl": "map/bayonet/bayonetPoint.json",
+          "remoteUrl": "location/getBayonetPoint"
         }
       }
     }
