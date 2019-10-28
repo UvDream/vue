@@ -104,18 +104,17 @@ export default {
 
       // 海康的地图摄像头点位
       request({ url: "hikvision/getCameraPoints" }).then(result => {
-        console.log("摄像头", result);
         result.data.map(val => {
           genrateHikMarker(val, isUrban).addTo(map);
         });
       });
       // 全部摄像头
-      request({ url: "hikvision/getAllCameraPoints" }).then(result => {
-        console.log("全部摄像头", result);
-        result.data.map(val => {
-          genrateHikMarker(val, isUrban).addTo(map);
-        });
-      });
+      // request({ url: "hikvision/getAllCameraPoints" }).then(result => {
+      //   console.log("全部摄像头", result);
+      //   result.data.map(val => {
+      //     genrateHikMarker(val, isUrban).addTo(map);
+      //   });
+      // });
     });
   }
 };

@@ -96,23 +96,38 @@ body {
   line-height: 50px;
 }
 
-.marker-4g,
-.marker-op {
+.marker-4g {
   background: url(./assets/images/4g.png) no-repeat center center;
   width: 149px;
   @include marker;
   color: rgb(58, 86, 245);
 }
-.marker-zt,
-.marker-tp {
+.marker-op {
+  background: url(./assets/images/one.png) no-repeat center center;
+  width: 149px;
+  @include marker;
+  color: rgb(58, 86, 245);
+}
+.marker-zt {
   background: url(./assets/images/zt.png) no-repeat center center;
   width: 149px;
   color: rgb(90, 240, 90);
   @include marker;
 }
-.marker-mx,
-.marker-np {
+.marker-tp {
+  background: url(./assets/images/three.png) no-repeat center center;
+  width: 149px;
+  color: rgb(90, 240, 90);
+  @include marker;
+}
+.marker-mx {
   background: url(./assets/images/mx.png) no-repeat center center;
+  width: 149px;
+  color: orange;
+  @include marker;
+}
+.marker-np {
+  background: url(./assets/images/no.png) no-repeat center center;
   width: 149px;
   color: orange;
   @include marker;

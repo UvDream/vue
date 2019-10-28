@@ -56,8 +56,8 @@ export default {
     } else {
       if (name) {
         zoom = 13.2;
-      } else {
         center = [120.96669037868332, 31.414776697732762];
+      } else {
         zoom = 11.5;
       }
       this.options = ["警情", "3g摩巡", "4g车", "人像卡口"];

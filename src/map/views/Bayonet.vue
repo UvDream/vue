@@ -3,11 +3,11 @@
     <div id="map" @click="mapClick($event)"></div>
     <div class="top-left">
       <div class="block">
-        <div>卡口名称</div>
+        <div>名称</div>
         <div>{{list.leftData.kname}}</div>
       </div>
       <div class="block">
-        <div>卡口等级</div>
+        <div>等级</div>
         <div>{{list.leftData.kgrade}}</div>
       </div>
       <div class="block">
@@ -15,49 +15,49 @@
         <div>{{list.leftData.organizer}}</div>
       </div>
       <div class="block">
-        <div>日均双向车流量</div>
+        <div style="font-size:40px">双向流量</div>
         <div>{{list.leftData.trafficFlow}}</div>
       </div>
       <div class="block">
-        <div>位置描述</div>
+        <div>位置</div>
         <div>{{list.leftData.position}}</div>
       </div>
       <div class="block">
-        <div>负责人姓名</div>
+        <div>姓名</div>
         <div>{{list.leftData.principalName}}</div>
       </div>
       <div class="block">
-        <div>负责人电话</div>
+        <div>电话</div>
         <div>{{list.leftData.principalPhone}}</div>
       </div>
     </div>
     <div class="top-right">
-      <div class="block">
+      <div class="blocks">
         <div>每排警力</div>
         <div>{{list.rightData.policeForce}}</div>
       </div>
       <div class="zb">装备情况</div>
-      <div class="block">
+      <div class="blocks">
         <div>枪支</div>
-        <div>{{list.rightData.firearms}}</div>
+        <div>{{list.rightData.firearmsqz}}</div>
       </div>
-      <div class="block">
+      <div class="blocks">
         <div>一键点调</div>
         <div>{{list.rightData.oneClickAdjustment}}</div>
       </div>
-      <div class="block">
+      <div class="blocks">
         <div>执法仪</div>
         <div>{{list.rightData.lawEnforcementInstrument}}</div>
       </div>
-      <div class="block">
+      <div class="blocks">
         <div>检车位</div>
         <div>{{list.rightData.checkParkingSpace}}</div>
       </div>
-      <div class="block">
+      <div class="blocks">
         <div>电台</div>
         <div>{{list.rightData.radio}}</div>
       </div>
-      <div class="block">
+      <div class="blocks">
         <div>警务通</div>
         <div>{{list.rightData.policeService}}</div>
       </div>
@@ -66,25 +66,25 @@
       <div class="bottom-video">
         <div>{{list.video1.name}}</div>
         <section>
-          <video autoplay="autoplay" :src="list.video1.url"></video>
+          <video autoplay="autoplay" id="video1"></video>
         </section>
       </div>
       <div class="bottom-video">
         <div>{{list.video2.name}}</div>
         <section>
-          <video autoplay="autoplay" :src="list.video2.url"></video>
+          <video autoplay="autoplay" id="video2 "></video>
         </section>
       </div>
       <div class="bottom-video">
         <div>{{list.video3.name}}</div>
         <section>
-          <video autoplay="autoplay" :src="list.video3.url"></video>
+          <video autoplay="autoplay" id="video3"></video>
         </section>
       </div>
       <div class="bottom-video">
         <div>{{list.video4.name}}</div>
         <section>
-          <video autoplay="autoplay" :src="list.video4.url"></video>
+          <video autoplay="autoplay" id="video4"></video>
         </section>
       </div>
     </div>
@@ -106,6 +106,7 @@
 import "element-ui/lib/theme-chalk/checkbox.css";
 import "element-ui/lib/theme-chalk/checkbox-group.css";
 import * as ZTMAP from "ztmap";
+import * as Hls from "hls.js";
 import { getBayonetPoints } from "@/data/map";
 import { handleMarkerDisplay, generateMarker } from "../../utils/map-utils";
 import { request } from "@/data/api";
@@ -117,7 +118,7 @@ export default {
       checked: [],
       options: [],
       isIndeterminate: false,
-      data: "",
+      data: "昆山市局曹安公安检查站",
       list: {
         leftData: {
           kname: "",
@@ -159,13 +160,28 @@ export default {
   methods: {
     //   地图上点 点击事件
     mapClick(e) {
+      console.log(e.target.innerHTML);
       this.searchMap(e.target.innerHTML);
     },
     searchMap(name) {
       let keyName = name;
+      console.log(keyName);
       request({ url: "hikvision/getVideo", data: { keyName } }).then(res => {
         console.log(res);
         this.list = res.data;
+        this.setVideo("video1", res.data.video1.url);
+        this.setVideo("video2", res.data.video2.url);
+        this.setVideo("video3", res.data.video3.url);
+        this.setVideo("video4", res.data.video4.url);
+      });
+    },
+    setVideo(id, url) {
+      let hls = new Hls(),
+        container = document.getElementById(id);
+      hls.loadSource(url);
+      hls.attachMedia(container);
+      hls.on(Hls.Events.MANIFEST_PARSED, function() {
+        container.play();
       });
     },
     handleCheckAllChange(val) {
@@ -182,25 +198,26 @@ export default {
     }
   },
   mounted() {
+    this.searchMap(this.data);
     let { name = "", type = "" } = this.$route.query;
     let center, zoom;
     if (type) {
       this.options = ["一类卡口", "三类卡口", "无类卡口"];
       this.checked = ["一类卡口", "三类卡口", "无类卡口"];
-      center = [109.96808724375944, 31.37799640955572];
+      center = [90.96808724375944, 31.37799640955572];
       zoom = 12.806063001017806;
     } else {
       if (name) {
         zoom = 13.2;
       } else {
-        center = [120.96669037868332, 31.414776697732762];
-        zoom = 10.5;
+        center = [120.96669037868332, 31.364776697732762];
+        zoom = 11.5;
       }
       this.options = ["一类卡口", "三类卡口", "无类卡口"];
       this.checked = ["一类卡口", "三类卡口", "无类卡口"];
     }
     getBayonetPoints({ type, name }).then(result => {
-      const data = result.data;
+      const data = result.data.data;
       const map = new ZTMAP.Map({
         container: "map",
         center: center ? center : data.center,
@@ -219,31 +236,34 @@ export default {
         });
       });
     });
-
-    // generateMarker(this.$router, {
-    //   type: "special",
-    //   latlng: [121.0112746623, 31.4802199136]
-    // }).addTo(map);
   }
 };
 </script>
+
 <style lang="scss">
+.el-checkbox__label {
+  font-size: 60px !important;
+}
+.marker-detail {
+  color: rgba(13, 93, 152, 0);
+}
 .zb {
   color: #fff;
   margin: 0 20px;
   background-image: url("../assets/images/zb.png");
-  height: 65px;
+  height: 80px;
   background-size: 100% 100%;
+  font-size: 50px;
   line-height: 50px;
-  padding-left: 80px;
+  padding-left: 120px;
   margin-top: 20px;
   margin-bottom: 30px;
 }
 .block {
   display: flex;
   width: 100%;
-  //   outline: 1px solid red;
-  height: 85px;
+  // outline: 1px solid red;
+  height: 148px;
   color: #fff;
   margin-top: 10px;
   padding: 0 20px;
@@ -253,7 +273,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+    font-size: 50px;
     width: 42%;
     margin-right: 20px;
   }
@@ -263,35 +283,61 @@ export default {
     justify-content: center;
     align-items: center;
     background-size: 100% 100%;
+    font-size: 50px;
+    width: 50%;
+  }
+}
+.blocks {
+  display: flex;
+  width: 100%;
+  // outline: 1px solid red;
+  height: 130px;
+  color: #fff;
+  margin-top: 10px;
+  padding: 0 20px;
+  & > div:nth-child(1) {
+    background-image: url("../assets/images/bc.png");
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    width: 42%;
+    margin-right: 20px;
+  }
+  & > div:nth-child(2) {
+    background-image: url("../assets/images/alert-b2.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: 100% 100%;
+    font-size: 50px;
     width: 50%;
   }
 }
 #map {
   width: 100%;
-  height: 70%;
+  height: 75%;
   //   height: 100%;
 }
 #app {
   position: relative;
   .top-left {
-    width: 800px;
-    height: 680px;
+    width: 1200px;
+    height: 1120px;
     z-index: 999;
-    top: 178px;
+    top: 400px;
     left: 20px;
     position: absolute;
-    border: 4px solid #0d5d98;
     background-image: url("../assets/images/alert1.png");
     background-size: 100% 100%;
     padding: 50px 20px;
   }
   .top-right {
-    background: rgba(13, 93, 152, 0.5);
-    border: 4px solid #0d5d98;
     z-index: 900;
-    width: 800px;
-    height: 780px;
-    top: 178px;
+    width: 1200px;
+    height: 1120px;
+    top: 400px;
     background-image: url("../assets/images/alert1.png");
     background-size: 100% 100%;
     right: 20px;
@@ -306,12 +352,12 @@ export default {
   }
   .bottom {
     width: 100%;
-    height: 30%;
+    height: 25%;
     position: absolute;
     display: flex;
     bottom: 0;
     left: 0;
-    background-color: rgba(13, 93, 152, 1);
+    // background-color: rgba(13, 93, 152, 1);
     &-video {
       width: 25%;
       height: 92%;
@@ -320,17 +366,20 @@ export default {
       background-size: 100% 100%;
       & > div {
         color: #fff;
-        padding-left: 20px;
-        height: 10%;
+        padding-left: 40px;
+        height: 130px;
+        line-height: 100px;
+        // outline: 1px solid red;
         padding-top: 2%;
+        font-size: 50px;
       }
       & > section {
         width: 98%;
-        margin: 15px auto;
-        height: 80%;
+        margin: 0px auto;
+        height: 86%;
+        // outline: 1px solid orange;
         & > video {
           width: 100%;
-          height: 100%;
         }
       }
     }

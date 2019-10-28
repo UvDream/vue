@@ -1,5 +1,5 @@
 {
-  "isPublished": false,
+  "isPublished": true,
   "localBaseUrl": "../json/",
   "indexLocalBaseUrl": "json/",
   "remoteBaseUrl": "/",
@@ -54,7 +54,7 @@
       "bayonet": {
         "getBayonetPoints": {
           "localUrl": "map/bayonet/bayonetPoint.json",
-          "remoteUrl": "location/getBayonetPoint"
+          "remoteUrl": "/json/map/bayonet/bayonetPoint.json"
         }
       }
     }

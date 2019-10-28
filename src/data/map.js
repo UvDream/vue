@@ -1,8 +1,8 @@
 import { requestJson, request } from "./api";
-
 const interfaces = {
   bounds: "../json/map/home/bounds.json",
   points: "../json/map/city/points.json",
+  bayOne: "../json/map/bayonet/bayonetPoint.json",
   singlePointBounds: (name, type) =>
     "../json/map/" + type + "/" + name + ".json"
 };
@@ -21,8 +21,7 @@ const getSinglePoint = (name, type) =>
 const getPolicePoints = data =>
   request({ url: "map/police/getPolicePoints", data });
 // 获取卡口所有点位数据
-const getBayonetPoints = data =>
-  request({ url: "map/bayonet/getBayonetPoints", data });
+const getBayonetPoints = () => requestJson(interfaces.bayOne);
 
 export {
   getBounds,

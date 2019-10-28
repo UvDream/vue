@@ -41,9 +41,11 @@ const genrateHikMarker = (val, isUrban) => {
   let { width, height } =
     isUrban == 0 ? { width: 1400, height: 920 } : { width: 2900, height: 2300 };
   result.onClickPopup(
-    `<video 
+    `
+    <video 
         style="width: ${width}px;height: ${height}px;"
         class="hls-player" control>
+      
      </video>`,
     false,
     null,
