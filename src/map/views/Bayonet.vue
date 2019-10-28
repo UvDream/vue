@@ -3,37 +3,37 @@
     <div id="map" @click="mapClick($event)"></div>
     <div class="top-left">
       <div class="block">
-        <div>名称</div>
+        <div>名称&#x3000;&#x3000;</div>
         <div>{{list.leftData.kname}}</div>
       </div>
       <div class="block">
-        <div>等级</div>
+        <div>等级&#x3000;&#x3000;</div>
         <div>{{list.leftData.kgrade}}</div>
       </div>
       <div class="block">
-        <div>主管单位</div>
+        <div style="font-size:40px">主管单位&#x3000;&#x3000;</div>
         <div>{{list.leftData.organizer}}</div>
       </div>
       <div class="block">
-        <div style="font-size:40px">双向流量</div>
+        <div style="font-size:40px">双向流量&#x3000;&#x3000;</div>
         <div>{{list.leftData.trafficFlow}}</div>
       </div>
       <div class="block">
-        <div>位置</div>
+        <div>位置&#x3000;&#x3000;</div>
         <div>{{list.leftData.position}}</div>
       </div>
       <div class="block">
-        <div>姓名</div>
+        <div>姓名&#x3000;&#x3000;</div>
         <div>{{list.leftData.principalName}}</div>
       </div>
       <div class="block">
-        <div>电话</div>
+        <div>电话&#x3000;&#x3000;</div>
         <div>{{list.leftData.principalPhone}}</div>
       </div>
     </div>
     <div class="top-right">
       <div class="blocks">
-        <div>每排警力</div>
+        <div>每班警力</div>
         <div>{{list.rightData.policeForce}}</div>
       </div>
       <div class="zb">装备情况</div>
@@ -66,25 +66,26 @@
       <div class="bottom-video">
         <div>{{list.video1.name}}</div>
         <section>
-          <video autoplay="autoplay" id="video1"></video>
+          <video controls id="video1"></video>
         </section>
       </div>
       <div class="bottom-video">
         <div>{{list.video2.name}}</div>
         <section>
-          <video autoplay="autoplay" id="video2 "></video>
+          <video controls id="video2"></video>
         </section>
       </div>
+
       <div class="bottom-video">
         <div>{{list.video3.name}}</div>
         <section>
-          <video autoplay="autoplay" id="video3"></video>
+          <video controls id="video3"></video>
         </section>
       </div>
       <div class="bottom-video">
         <div>{{list.video4.name}}</div>
         <section>
-          <video autoplay="autoplay" id="video4"></video>
+          <video controls id="video4"></video>
         </section>
       </div>
     </div>
@@ -118,7 +119,7 @@ export default {
       checked: [],
       options: [],
       isIndeterminate: false,
-      data: "昆山市局曹安公安检查站",
+      data: "曹安公安检查站",
       list: {
         leftData: {
           kname: "",
@@ -160,12 +161,19 @@ export default {
   methods: {
     //   地图上点 点击事件
     mapClick(e) {
-      console.log(e.target.innerHTML);
+      let hls = new Hls();
+      hls.destroy();
+      let obj = document.getElementsByClassName("marker-detail");
+      for (let i = 0; i < obj.length; i++) {
+        obj[i].classList.remove("loading");
+        if (obj[i].innerHTML === e.target.innerHTML) {
+          obj[i].classList.add("loading");
+        }
+      }
       this.searchMap(e.target.innerHTML);
     },
     searchMap(name) {
       let keyName = name;
-      console.log(keyName);
       request({ url: "hikvision/getVideo", data: { keyName } }).then(res => {
         console.log(res);
         this.list = res.data;
@@ -176,13 +184,18 @@ export default {
       });
     },
     setVideo(id, url) {
-      let hls = new Hls(),
-        container = document.getElementById(id);
-      hls.loadSource(url);
-      hls.attachMedia(container);
-      hls.on(Hls.Events.MANIFEST_PARSED, function() {
-        container.play();
-      });
+      let hls = new Hls();
+      // hls.destory();
+      if (Hls.isSupported()) {
+        let container = document.getElementById(id);
+        hls.loadSource(url);
+        hls.attachMedia(container);
+        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+          container.play();
+        });
+      } else {
+        console.error("不支持此播放器");
+      }
     },
     handleCheckAllChange(val) {
       this.checked = val ? this.options : [];
@@ -211,7 +224,7 @@ export default {
         zoom = 13.2;
       } else {
         center = [120.96669037868332, 31.364776697732762];
-        zoom = 11.5;
+        zoom = 11.8;
       }
       this.options = ["一类卡口", "三类卡口", "无类卡口"];
       this.checked = ["一类卡口", "三类卡口", "无类卡口"];
@@ -241,6 +254,10 @@ export default {
 </script>
 
 <style lang="scss">
+.loading {
+  color: red;
+  background: url("../assets/images/loading.gif") no-repeat center center;
+}
 .el-checkbox__label {
   font-size: 60px !important;
 }
@@ -263,7 +280,7 @@ export default {
   display: flex;
   width: 100%;
   // outline: 1px solid red;
-  height: 148px;
+  height: 140px;
   color: #fff;
   margin-top: 10px;
   padding: 0 20px;
@@ -271,7 +288,7 @@ export default {
     background-image: url("../assets/images/alert-b1.png");
     background-size: 100% 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     font-size: 50px;
     width: 42%;
@@ -291,7 +308,7 @@ export default {
   display: flex;
   width: 100%;
   // outline: 1px solid red;
-  height: 130px;
+  height: 122px;
   color: #fff;
   margin-top: 10px;
   padding: 0 20px;
@@ -323,10 +340,10 @@ export default {
 #app {
   position: relative;
   .top-left {
-    width: 1200px;
-    height: 1120px;
+    width: 1000px;
+    height: 1060px;
     z-index: 999;
-    top: 400px;
+    top: 200px;
     left: 20px;
     position: absolute;
     background-image: url("../assets/images/alert1.png");
@@ -335,9 +352,9 @@ export default {
   }
   .top-right {
     z-index: 900;
-    width: 1200px;
-    height: 1120px;
-    top: 400px;
+    width: 1000px;
+    height: 1060px;
+    top: 200px;
     background-image: url("../assets/images/alert1.png");
     background-size: 100% 100%;
     right: 20px;

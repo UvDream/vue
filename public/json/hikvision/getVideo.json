@@ -21,19 +21,19 @@
         },
         "video1": {
             "name": "这是名字",
-            "url": ""
+            "url": "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8"
         },
         "video2": {
-            "name": "",
-            "url": ""
+            "name": "第二个",
+            "url": "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8"
         },
         "video3": {
             "name": "",
-            "url": ""
+            "url": "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8"
         },
         "video4": {
             "name": "",
-            "url": ""
+            "url": "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8"
         }
     }
 }

@@ -46,6 +46,7 @@ export default {
   position: absolute;
 }
 
+
 html,
 body {
   width: 100%;
